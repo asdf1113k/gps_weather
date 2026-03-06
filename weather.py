@@ -1,13 +1,14 @@
-import requests as rq
 
-headers = {
-    "list-type": "application/json"
-}
+# import requests as rq
 
-responce_open_meteo = rq.get("https://forecastapi.com/v2/forecast", headers=headers)
+# headers = {
+#     "list-type": "application/json"
+# }
 
-json_open_meteo = responce_open_meteo.json()
+# responce_open_meteo = rq.get("https://forecastapi.com/v2/forecast", headers=headers)
 
-for key in json_open_meteo:
-    print(key, ":", json_open_meteo[key])
+# json_open_meteo = responce_open_meteo.json()
+
+# for key in json_open_meteo:
+#     print(key, ":", json_open_meteo[key])
 
