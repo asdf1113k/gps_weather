@@ -1,14 +1,19 @@
+from weather_api_service import json_openweather
+from coordinates import json_ipinfo
+from colorama import init, Fore
 
-# import requests as rq
+init(autoreset=True)
+if __name__ == "__main__":
 
-# headers = {
-#     "list-type": "application/json"
-# }
 
-# responce_open_meteo = rq.get("https://forecastapi.com/v2/forecast", headers=headers)
-
-# json_open_meteo = responce_open_meteo.json()
-
-# for key in json_open_meteo:
-#     print(key, ":", json_open_meteo[key])
-
+    print(Fore.CYAN + r'''          
+                                     /$$     /$$                          
+                                    | $$    | $$                          
+ /$$  /$$  /$$  /$$$$$$   /$$$$$$  /$$$$$$  | $$$$$$$   /$$$$$$   /$$$$$$ 
+| $$ | $$ | $$ /$$__  $$ |____  $$|_  $$_/  | $$__  $$ /$$__  $$ /$$__  $$
+| $$ | $$ | $$| $$$$$$$$  /$$$$$$$  | $$    | $$  \ $$| $$$$$$$$| $$  \__/
+| $$ | $$ | $$| $$_____/ /$$__  $$  | $$ /$$| $$  | $$| $$_____/| $$      
+|  $$$$$/$$$$/|  $$$$$$$|  $$$$$$$  |  $$$$/| $$  | $$|  $$$$$$$| $$      
+ \_____/\___/  \_______/ \_______/   \___/  |__/  |__/ \_______/|__/      
+''')
+    
