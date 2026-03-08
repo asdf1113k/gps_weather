@@ -1,13 +1,18 @@
 from coordinates import json_ipinfo
 import requests as rq
 from my_token import TOKEN
+from colorama import init, Fore
+init(autoreset=True)
 # https://api.openweathermap.org/data/2.5/weather?lat=55.7&lon=37.5&appid=7549b3ff11a7b2f3cd25b56d21c83c6a&lang=ru&units=metric
 loc:str = json_ipinfo["loc"]
 loc:list = loc.split(",")
 responce_api_openweather = rq.get(f"https://api.openweathermap.org/data/2.5/weather?lat={loc[0]}&lon={loc[1]}&appid={TOKEN}&lang=ru&units=metric")
 json_openweathermap = responce_api_openweather.json()
 
-if __name__ == "__main__":
+if responce_api_openweather.status_code == 200:
+    print(Fore.GREEN + 'api.openweathermap.org подключено')
+elif responce_api_openweather.status_code <= 400:
+    raise('не удалось подкл к api.openweathermap.org')
+
+if __name__ == '__main__':
     print(responce_api_openweather.status_code)
-    for key in json_openweathermap:
-        print(key, ":", json_openweathermap[key])
