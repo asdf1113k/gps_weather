@@ -1,4 +1,4 @@
-from weather_great import weather_great
+from weather_great import weather_great, weather_great_colored
 
 from weather_api_service import json_openweathermap
 from coordinates import json_ipinfo
@@ -36,7 +36,7 @@ class weather:
     
 init(autoreset=True)
 if __name__ == "__main__":
-    weather_great()
+    weather_great_colored()
     # ip скрыт в weather_api_service
     # print(json_ipinfo)
     # print(json_openweathermap)
