@@ -1,6 +1,27 @@
 from colorama import init, Fore
 init(autoreset=True)
 
+def filter_color(obj: str | int | float) -> str:
+     match obj:
+          case 'ясно':
+               return Fore.YELLOw + obj
+
+          case 'переменная облачность' | 'облачно':
+               return Fore.WHITE + obj
+          
+          case obj if obj < 0:
+               return Fore.BLUE + str(obj)
+          
+          case obj if obj > 10:
+               return Fore.YELLOW + str(obj)
+
+          case obj if obj <= 10:
+               return Fore.CYAN + str(obj)
+          
+          case _:
+               return obj
+     
+
 def filter_color_old_version(obj: int | float | str) -> str:
      """это версия функции больше не используеться, остаеться здесь как экспанат в музее
      ну или если у когото в друг будет версия python>3.10"""
@@ -22,23 +43,3 @@ def filter_color_old_version(obj: int | float | str) -> str:
           else:
                return obj
           
-def filter_color(obj: str | int | float) -> str:
-     match obj:
-          case 'ясно':
-               return Fore.YELLOw + obj
-
-          case 'переменная облачность' | 'облачно':
-               return Fore.WHITE + obj
-          
-          case obj if obj < 0:
-               return Fore.BLUE + str(obj)
-          
-          case obj if obj > 10:
-               return Fore.YELLOW + str(obj)
-
-          case obj if obj <= 10:
-               return Fore.CYAN + str(obj)
-          
-          case _:
-               return obj
-     
