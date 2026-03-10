@@ -4,7 +4,7 @@ init(autoreset=True)
 def filter_color(obj: str | int | float) -> str:
      match obj:
           case 'ясно':
-               return Fore.YELLOw + obj
+               return Fore.YELLOW + obj
 
           case 'переменная облачность' | 'облачно':
                return Fore.WHITE + obj
