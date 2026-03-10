@@ -1,28 +1,12 @@
 from weather_great import  weather_great_greet_russia
+from filter_color import filter_color
 
 from weather_api_service import json_openweathermap
 from coordinates import json_ipinfo
 
 from colorama import init, Fore
 
-def filter_color(obj: int | float | str):
-     if isinstance(obj, str):
-          if obj in ['ясно']:
-               return Fore.YELLOW + obj
-          elif obj in ['переменная облачность', 'облачно']:
-                return Fore.WHITE + obj
-          else:
-               return obj
 
-     if isinstance(obj, (int, float)):  
-          if obj > 10:
-               return Fore.YELLOW + str(obj)
-          elif obj <= 10:
-               return Fore.CYAN + str(obj)
-          elif obj <= 0:
-               return Fore.BLUE + str(obj)
-          else:
-               return obj
             
 
 class weather:
