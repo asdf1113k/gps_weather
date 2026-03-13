@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.10
+#!/usr/bin/env python3.14
 from weather_great import  weather_great_greet_russia
 from filter_color import filter_color
 
