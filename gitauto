@@ -2,8 +2,7 @@
 git add $@
 git status
 echo ведите коммит:
-read commit
-git commit -m "$commit"
-read select
-if select == "y":
-    echo it work
+git commit 
+read pass
+git push origin main
+$pass
