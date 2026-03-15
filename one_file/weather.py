@@ -101,6 +101,13 @@ class Weather:
         print(f'чуствуеться как: {filter_color(self.temp_feels_like)}°C', end='\n')
         print(f'скорость ветра: {self.wind_speed} м/с'.rjust(25))
 
+    def print_weather_no_filter(self):
+        print(Fore.GREEN + f'погода в {self.region}, {self.city}')
+        print(f'{(self.weather_description)}'.rjust(30))
+        print(f'температура: {((self.temp))}°C'.rjust(25), end=' ')
+        print(f'чуствуеться как: {(self.temp_feels_like)}°C', end='\n')
+        print(f'скорость ветра: {self.wind_speed} м/с'.rjust(25))
+
 
 if __name__ == "__main__":
     weather_great_greet_russia()
@@ -108,4 +115,8 @@ if __name__ == "__main__":
     # print(json_ipinfo) # было сделано для просмотра json
     # print(json_openweathermap)
     wt = Weather(json_ipinfo, json_openweathermap)
-    wt.print_weather()
+    try:
+        wt.print_weather()
+    except TypeError:
+        wt.print_weather_no_filter()
+        print(Fore.YELLOW + "новое описание погоды, из-за этого текст не разноцветный")
