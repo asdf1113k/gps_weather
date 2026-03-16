@@ -29,7 +29,7 @@ pip install -r requirements.txt
 ```
 
 ## windows
-```
+```ps
 git clone https://github.com/asdf1113k/gps_weather.git
 cd gps_weather
 python -m venv .venv
