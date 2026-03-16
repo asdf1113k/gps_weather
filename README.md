@@ -23,8 +23,8 @@
 ```bash
 git clone https://github.com/asdf1113k/gps_weather.git
 cd gps_weather
-python -m venv .venv
-source .venv/Scripts/activate
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -35,4 +35,9 @@ cd gps_weather
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
+```
+
+# usage
+```
+python weather.py
 ```
