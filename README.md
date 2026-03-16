@@ -38,7 +38,7 @@ pip install -r requirements.txt
 ```
 
 # usage
-```
+```bash
 python weather.py
 or
 python3 weather.py
