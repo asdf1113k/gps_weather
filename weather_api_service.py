@@ -1,18 +1,28 @@
-from coordinates import json_ipinfo
+from coordinates import get_coordinates
 import requests as rq
-from my_token import TOKEN
 from colorama import init, Fore
 init(autoreset=True)
 # https://api.openweathermap.org/data/2.5/weather?lat=55.7&lon=37.5&appid=7549b3ff11a7b2f3cd25b56d21c83c6a&lang=ru&units=metric
-loc:str = json_ipinfo["loc"]
-loc:list = loc.split(",")
-responce_api_openweather = rq.get(f"https://api.openweathermap.org/data/2.5/weather?lat={loc[0]}&lon={loc[1]}&appid={TOKEN}&lang=ru&units=metric")
-json_openweathermap = responce_api_openweather.json()
 
-if responce_api_openweather.status_code == 200:
-    print(Fore.GREEN + 'api.openweathermap.org подключено')
-elif responce_api_openweather.status_code <= 400:
-    raise('не удалось подкл к api.openweathermap.org')
+def get_weather(
+        coordinates: get_coordinates, 
+        TOKEN="7549b3ff11a7b2f3cd25b56d21c83c6a", 
+        lang='ru'
+        ) -> dict:
+    responce_api_openweather = rq.get(f"https://api.openweathermap.org/data/2.5/weather?lat={coordinates[0]}&lon={coordinates[1]}&appid={TOKEN}&lang={lang}&units=metric")
+    json_openweathermap = responce_api_openweather.json()
+
+    if   responce_api_openweather.status_code >= 199 and 226 >= responce_api_openweather.status_code:
+        print(Fore.GREEN + f'api.openweathermap.org подключено статус код \'{responce_api_openweather.status_code}\'')
+
+    elif responce_api_openweather.status_code >= 400 and 499 >= responce_api_openweather.status_code:
+        raise('api.openweathermap.org ошибка на стороне клиента')
+    
+    elif responce_api_openweather.status_code >= 500 and 526 >= responce_api_openweather.status_code:
+        raise('api.openweathermap.org ошибка на стороне сервера')
+
+    
+    return json_openweathermap
 
 if __name__ == '__main__':
-    print(responce_api_openweather.status_code)
+    print((get_weather(get_coordinates())))
