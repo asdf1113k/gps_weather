@@ -2,8 +2,8 @@
 from weather_great import  weather_great_greet_russia
 from filter_color import filter_color
 
-from weather_api_service import json_openweathermap
-from coordinates import json_ipinfo
+from weather_api_service import get_weather
+from coordinates import get_coordinates
 
 from colorama import init, Fore
 init(autoreset=True)
@@ -11,8 +11,7 @@ init(autoreset=True)
             
 
 class Weather:
-    def __init__(self, json_ipinfo, json_api_weather):
-        self.region = json_ipinfo['region']
+    def __init__(self, json_api_weather):
         self.city = json_api_weather['name']
         self.temp = json_api_weather['main']['temp']
         self.temp_feels_like = json_api_weather['main']['feels_like']
@@ -20,17 +19,15 @@ class Weather:
         self.wind_speed = json_api_weather['wind']['speed']
 
     def print_weather(self):
-        print(Fore.GREEN + f'погода в {self.region}, {self.city}')
-        print(f'{filter_color(self.weather_description)}'.rjust(30))
+        print(f'{filter_color(self.weather_description)} в {self.city}'.rjust(30))
         print(f'температура: {filter_color((self.temp))}°C'.rjust(25), end=' ')
         print(f'чуствуеться как: {filter_color(self.temp_feels_like)}°C', end='\n')
         print(f'скорость ветра: {self.wind_speed} м/с'.rjust(25))
 
-    def print_weather_no_filter(self):
-        print(Fore.GREEN + f'погода в {self.region}, {self.city}')
-        print(f'{(self.weather_description)}'.rjust(30))
-        print(f'температура: {((self.temp))}°C'.rjust(25), end=' ')
-        print(f'чуствуеться как: {(self.temp_feels_like)}°C', end='\n')
+    def print_weather_new_description(self):
+        print(f'{self.weather_description} в {self.city}'.rjust(30))
+        print(f'температура: {filter_color((self.temp))}°C'.rjust(25), end=' ')
+        print(f'чуствуеться как: {filter_color(self.temp_feels_like)}°C', end='\n')
         print(f'скорость ветра: {self.wind_speed} м/с'.rjust(25))
 
 
@@ -38,12 +35,9 @@ class Weather:
 
 if __name__ == "__main__":
     weather_great_greet_russia()
-    # ip скрыт в coordinates.py
-    # print(json_ipinfo)
-    # print(json_openweathermap)
-    wt = Weather(json_ipinfo, json_openweathermap)
+    wt = Weather(get_weather(get_coordinates()))
     try:
         wt.print_weather()
     except TypeError:
-        wt.print_weather_no_filter()
-        print(Fore.YELLOW + "новое описание погоды, из-за этого текст не разноцветный")
+        wt.print_weather_new_description()
+        print(Fore.YELLOW + "новое описание погоды(\"сделать логирование не известного описания погоды\")")
