@@ -1,7 +1,6 @@
 #!/usr/bin/env python3.14
 from weather_great import  weather_great_greet_russia
 from filter_color import filter_color
-
 from weather_api_service import get_weather
 from coordinates import get_coordinates
 
