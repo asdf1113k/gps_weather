@@ -6,7 +6,7 @@ try:
     from colorama import init, Fore
     import gpsd
     import winsdk.windows.devices.geolocation as wdg
-except ImoirtError:
+except ImportError:
     print("установите зависимости командой 'pip install -r requirements.txt' или 'uv sync'")
 
 init(autoreset=True)
