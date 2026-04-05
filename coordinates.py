@@ -2,9 +2,12 @@ import asyncio
 import os
 import requests as rq
 
-import gpsd
-import winsdk.windows.devices.geolocation as wdg
-from colorama import init, Fore
+try:
+    from colorama import init, Fore
+    import gpsd
+    import winsdk.windows.devices.geolocation as wdg
+except ImoirtError:
+    print("установите зависимости командой 'pip install -r requirements.txt' или 'uv sync'")
 
 init(autoreset=True)
 #будет выполняться если не получилось получить доступ к точному местуположению
