@@ -1,6 +1,7 @@
 import asyncio
 import os
 import requests as rq
+
 import gpsd
 import winsdk.windows.devices.geolocation as wdg
 from colorama import init, Fore
